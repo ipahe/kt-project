@@ -11,7 +11,8 @@ import { routes } from './routes';
 import { HomeComponent } from './auth/home/home.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
 import { Ng2Webstorage } from 'ngx-webstorage';
-
+import { AuthGuard } from './common/guards/auth.guard'
+import { PublicGuard } from './common/guards/public.guard'
 import { AuthenticationService } from './common/services/authentication.service';
 import { HttpService } from './common/services/http.service';
 
@@ -34,7 +35,9 @@ import { HttpService } from './common/services/http.service';
   ],
   providers: [
     AuthenticationService,
-    HttpService
+    HttpService,
+    AuthGuard,
+    PublicGuard
   ],
   bootstrap: [AppComponent]
 })

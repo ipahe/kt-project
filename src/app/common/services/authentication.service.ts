@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SessionStorageService } from 'ngx-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
 import { HttpService } from './http.service'
 import { Config } from './config'
 
@@ -10,7 +10,7 @@ export class AuthenticationService {
   public hasSession: boolean = false;
   public apiURL = Config.API_URL;
 
-  constructor(public _http: HttpService, public _localStorage: SessionStorageService) { }
+  constructor(public _http: HttpService, public _localStorage: LocalStorageService) { }
 
 
   public isLoggedIn(): boolean{
