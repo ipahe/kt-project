@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-
+import { AuthenticationService } from '../../common/services/authentication.service'
+import { Router } from '@angular/router'
+import { LocalStorageService } from 'ngx-webstorage'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,22 +9,23 @@ import { Component, OnInit} from '@angular/core';
 })
 export class LoginComponent implements OnInit{
 
-  public isAuthenticated = false;
-  public cadena = "Hola soy el Login components";
   public id = Math.random().toString(36).substring(4);
   public user: any = {};
 
-  constructor() { }
+  constructor(public _authService: AuthenticationService,
+              public _router: Router,
+              public _localStorageServ: LocalStorageService) { }
 
   ngOnInit() {
     let isAuthenticated = true;
-    console.log("isAuthenticated", this.isAuthenticated);
-    
   }
 
   onSubmit(event: Event){
     event.preventDefault();
-    console.log(this.user);
+    
+    this._authService.logIn(this.user.username, this.user.password)
+
+    
   }
   
 
