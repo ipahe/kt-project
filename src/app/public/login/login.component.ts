@@ -23,7 +23,19 @@ export class LoginComponent implements OnInit{
   onSubmit(event: Event){
     event.preventDefault();
     
-    this._authService.logIn(this.user.username, this.user.password)
+    this._authService.logIn(this.user.username, this.user.password).subscribe(
+      (user) => {
+        this._authService.user = user;
+        this._authService.hasSession = true;
+        this._localStorageServ.store('user', user);
+        this._router.navigate(['/home']);
+
+      },
+      (error) => {
+        console.log(error);
+        this._authService.hasSession = false;
+      }
+    );
 
     
   }
