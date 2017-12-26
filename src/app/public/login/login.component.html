@@ -1,13 +1,10 @@
 <h2>Login Form</h2>
 
-<form action="/action_page.php">
-  <div class="imgcontainer">
-  
-  </div>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit($event)">
 
   <div class="container">
     <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter Username" name="uname" required >
 
     <label><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
