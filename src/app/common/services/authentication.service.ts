@@ -27,7 +27,8 @@ export class AuthenticationService {
     
     return this._http.post(url, {
       username,
-      password
+      password,
+      lang: "EN"
     });
   }
 

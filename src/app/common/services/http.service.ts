@@ -10,10 +10,11 @@ export class HttpService {
   constructor(public _http: Http) {
   }
 
-  public get(url, token): Observable<any> {
+  public get(url, token, lang?): Observable<any> {
     const header = new Headers({
       'Content-Type': 'application/json',
-      'Api-Token': token
+      'Api-Token': token,
+      'lang': !!lang ? lang : "EN"
     });
 
     const options = new RequestOptions({ headers: header });
@@ -21,11 +22,15 @@ export class HttpService {
   }
 
 
-  public post(url, params, token?): Observable<any> {
+  public post(url, params, token?, lang?): Observable<any> {
     const header = !!token ? new Headers({
       'Content-Type': 'application/json',
-      'Api-Token': token
-    }) : new Headers({ 'Content-Type': 'application/json' });
+      'Api-Token': token,
+      'lang': !!lang ? lang : "EN"
+    }) : new Headers({ 
+      'Content-Type': 'application/json',
+      'lang': !!lang ? lang : "EN"
+   });
 
     const options = new RequestOptions({ headers: header });
     const body = JSON.stringify(params);
